@@ -16,24 +16,23 @@
             overflow: hidden;
         }
         .iphone {
-            width: 320px;
-            height: 600px;
+            width: 340px;
+            height: 620px;
             background: black;
-            border-radius: 40px;
+            border-radius: 50px;
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
-            border: 5px solid #333;
+            border: 8px solid #333;
             overflow: hidden;
         }
         .screen {
             width: 100%;
             height: 100%;
-            background: url('iphonewe.png') no-repeat center/cover; /* Aqui você coloca a imagem local */
-            background-size: cover;
-            border-radius: 35px;
+            background: url('iphonewe.png') no-repeat center/cover;
+            border-radius: 42px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -44,7 +43,7 @@
         .lock-icon {
             color: white;
             font-size: 20px;
-            margin-top: 20px;
+            margin-top: 15px;  /* Ajustado para mover mais para cima */
         }
         .clock {
             color: white;
@@ -59,6 +58,27 @@
             font-family: Arial, sans-serif;
             margin-top: 5px;
         }
+        .unlock-button {
+            position: absolute;
+            top: 10px;
+            right: -8px;
+            width: 20px;
+            height: 60px;
+            background-color: #333;
+            border-radius: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .unlock-button:hover {
+            background-color: #555;
+        }
+        .unlock-button.show {
+            opacity: 1;
+            visibility: visible;
+        }
         .bottom-icons {
             position: absolute;
             bottom: 50px;
@@ -66,6 +86,16 @@
             display: flex;
             justify-content: space-between;
             padding: 0 60px;
+        }
+        .icon-wrapper {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
         }
         .icon {
             color: white;
@@ -85,14 +115,13 @@
             cursor: pointer;
         }
         .home-bar:hover {
-            transform: translateX(-50%) scale(1.2);
+            transform: translateX(-70%) scale(1.2);
             opacity: 0.7;
         }
         .unlocked-screen {
             width: 100%;
             height: 100%;
-            background: url('iphonewe.png') no-repeat center/cover; /* Imagem de fundo na tela inicial */
-            background-size: cover;
+            background: url('iphonewa.png') no-repeat center/cover;
             position: absolute;
             top: 100%;
             transition: transform 0.5s ease-in-out;
@@ -126,31 +155,45 @@
             transform: scale(1.2);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
-
-        /* Barra de aplicativos na parte inferior */
-        .app-bar {
+        .dock-bar {
             position: absolute;
-            bottom: 10px;
-            width: 100%;
+            bottom: 40px;
+            width: 90%;
+            height: 60px;
+            background-color: rgba(169, 169, 169, 0.5);
+            border-radius: 30px;
             display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .dock-bar .app {
+            width: 40px;
+            height: 40px;
+            font-size: 22px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
             justify-content: center;
-            padding: 10px 0;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .app-icon {
-            color: white;
-            font-size: 30px;
-            margin: 0 15px;
-            cursor: pointer;
-            transition: transform 0.2s ease-in-out;
+        /* Estilo da câmera mais realista (sem emoji) */
+        .camera-icon {
+            position: absolute;
+            top: 10px;  /* Ajustado para ficar mais para cima */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;  /* Tamanho ajustado para ser menor e mais realista */
+            height: 12px;
+            background-color: #333;  /* Cor escura para simular a lente da câmera */
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #fff; /* Borda branca para simular o estilo da câmera */
         }
 
-        .app-icon:hover {
-            transform: scale(1.2);
-        }
     </style>
 </head>
 <body>
@@ -160,8 +203,8 @@
             <div class="clock" id="clock">9:41</div>
             <div class="date" id="date">Martes, 14 de septiembre</div>
             <div class="bottom-icons">
-                <div class="icon">🔦</div>
-                <div class="icon">📷</div>
+                <div class="icon-wrapper" id="flashlight"><div class="icon">🔦</div></div>
+                <div class="icon-wrapper" id="camera"><div class="icon">📷</div></div>
             </div>
             <div class="home-bar" id="homeBar"></div>
         </div>
@@ -176,16 +219,21 @@
                 <div class="app">📅</div>
                 <div class="app">⚙️</div>
             </div>
-            <!-- Barra de Apps na parte inferior -->
-            <div class="app-bar">
-                <div class="app-icon">📱</div>
-                <div class="app-icon">📷</div>
-                <div class="app-icon">🌍</div>
-                <div class="app-icon">⚙️</div>
+            <!-- Dock Bar -->
+            <div class="dock-bar">
+                <div class="app">📞</div>
+                <div class="app">💬</div>
+                <div class="app">📷</div>
+                <div class="app">🎵</div>
             </div>
         </div>
+        <!-- Botão de desbloqueio -->
+        <div class="unlock-button" id="unlockButton"></div>
+
+        <!-- Câmera mais realista (sem emoji) -->
+        <div class="camera-icon"></div>
     </div>
-    
+
     <script>
         function updateClock() {
             const clockElement = document.getElementById("clock");
@@ -194,17 +242,36 @@
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
             clockElement.textContent = `${hours}:${minutes}`;
-
             const options = { weekday: 'long', day: 'numeric', month: 'long' };
-            dateElement.textContent = now.toLocaleDateString('es-ES', options);
+            dateElement.textContent = now.toLocaleDateString('pt-BR', options);
         }
-
         setInterval(updateClock, 1000);
         updateClock();
 
         document.getElementById("homeBar").addEventListener("click", function () {
             document.getElementById("lockScreen").style.transform = "translateY(-100%)";
             document.getElementById("homeScreen").style.transform = "translateY(-100%)";
+            document.getElementById("flashlight").style.opacity = "0";
+            document.getElementById("camera").style.opacity = "0";
+        });
+
+        document.getElementById("unlockButton").addEventListener("click", function () {
+            document.getElementById("lockScreen").style.transform = "translateY(0)";
+            document.getElementById("homeScreen").style.transform = "translateY(100%)";
+            document.getElementById("flashlight").style.opacity = "1";
+            document.getElementById("camera").style.opacity = "1";
+        });
+
+        // Mostrar o botão de desbloqueio quando na tela inicial
+        const unlockButton = document.getElementById("unlockButton");
+        const homeScreen = document.getElementById("homeScreen");
+
+        homeScreen.addEventListener("mouseenter", function () {
+            unlockButton.classList.add("show");
+        });
+
+        homeScreen.addEventListener("mouseleave", function () {
+            unlockButton.classList.remove("show");
         });
     </script>
 </body>
