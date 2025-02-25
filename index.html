@@ -192,50 +192,66 @@
             justify-content: center;
             border: 2px solid #fff;
         }
+        /* Ajuste da barra de status */
+        .status-bar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .wifi-icon {
+            margin-right: 20px; /* Espaço entre o ícone de Wi-Fi e o de bateria */
+        }
+        .battery-icon {
+            font-size: 20px;
+        }
+        .status-bar img {
+            width: 24px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
-    
-        <div class="iphone">
-    <div class="screen" id="lockScreen">
-        <div class="lock-icon">🔒</div>
-        <div class="clock" id="clock">9:41</div>
-        <div class="date" id="date">Martes, 14 de septiembre</div>
-        <div class="bottom-icons">
-            <div class="icon-wrapper" id="flashlight"><div class="icon">🔦</div></div>
-            <div class="icon-wrapper" id="camera"><div class="icon">📷</div></div>
-        </div>
-        <div class="home-bar" id="homeBar"></div>
-    </div>
-    <div class="unlocked-screen" id="homeScreen">
-        <!-- Adicionando ícones de Wi-Fi e Bateria -->
-        <div class="status-bar">
-            <div class="wifi-icon">📶</div>
-            <div class="battery-icon">🔋</div>
-        </div>
-        <div class="app-grid" id="appGrid">
-            <div class="app" draggable="true">📞</div>
-            <div class="app" draggable="true">💬</div>
-            <div class="app" draggable="true">📷</div>
-            <div class="app" draggable="true">🎵</div>
-            <div class="app" draggable="true">🌍</div>
-            <div class="app" draggable="true">📩</div>
-            <div class="app" draggable="true">📅</div>
-            <div class="app" draggable="true">⚙️</div>
-        </div>
-        <div class="dock-bar">
-            <div class="app">
-                <img src="path-to-your-phone-icon.png" alt="Phone" style="width: 40px; height: 40px;">
+    <div class="iphone">
+        <div class="screen" id="lockScreen">
+            <div class="lock-icon">🔒</div>
+            <div class="clock" id="clock">9:41</div>
+            <div class="date" id="date">Martes, 14 de septiembre</div>
+            <div class="bottom-icons">
+                <div class="icon-wrapper" id="flashlight"><div class="icon">🔦</div></div>
+                <div class="icon-wrapper" id="camera"><div class="icon">📷</div></div>
             </div>
-            <div class="app">💬</div>
-            <div class="app">📷</div>
-            <div class="app">🎵</div>
+            <div class="home-bar" id="homeBar"></div>
         </div>
+        <div class="unlocked-screen" id="homeScreen">
+            <!-- Barra de status com Wi-Fi e bateria -->
+            <div class="status-bar">
+                <div class="wifi-icon"><img src="wifi.png" alt="Wi-Fi"></div>
+                <div class="battery-icon"><img src="bateria.png" alt="Bateria"></div>
+            </div>
+            <div class="app-grid" id="appGrid">
+                <div class="app" draggable="true">📞</div>
+                <div class="app" draggable="true">💬</div>
+                <div class="app" draggable="true">📷</div>
+                <div class="app" draggable="true">🎵</div>
+                <div class="app" draggable="true">🌍</div>
+                <div class="app" draggable="true">📩</div>
+                <div class="app" draggable="true">📅</div>
+                <div class="app" draggable="true">⚙️</div>
+            </div>
+            <div class="dock-bar">
+                <div class="app">
+                    <img src="path-to-your-phone-icon.png" alt="Phone" style="width: 40px; height: 40px;">
+                </div>
+                <div class="app">💬</div>
+                <div class="app">📷</div>
+                <div class="app">🎵</div>
+            </div>
+        </div>
+        <div class="unlock-button" id="unlockButton"></div>
+        <div class="camera-icon"></div>
     </div>
-    <div class="unlock-button" id="unlockButton"></div>
-    <div class="camera-icon"></div>
-</div>
-
 
     <script>
         function updateClock() {
