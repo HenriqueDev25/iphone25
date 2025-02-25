@@ -43,7 +43,7 @@
         .lock-icon {
             color: white;
             font-size: 20px;
-            margin-top: 15px;  /* Ajustado para mover mais para cima */
+            margin-top: 15px;  
         }
         .clock {
             color: white;
@@ -150,6 +150,7 @@
             color: white;
             font-family: Arial, sans-serif;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
         .app:hover {
             transform: scale(1.2);
@@ -176,24 +177,21 @@
             align-items: center;
             justify-content: center;
         }
-
-        /* Estilo da câmera mais realista (sem emoji) */
         .camera-icon {
             position: absolute;
-            top: 10px;  /* Ajustado para ficar mais para cima */
+            top: 10px;  
             left: 50%;
             transform: translateX(-50%);
-            width: 12px;  /* Tamanho ajustado para ser menor e mais realista */
+            width: 12px;
             height: 12px;
-            background-color: #333;  /* Cor escura para simular a lente da câmera */
+            background-color: #333;
             border-radius: 50%;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid #fff; /* Borda branca para simular o estilo da câmera */
+            border: 2px solid #fff;
         }
-
     </style>
 </head>
 <body>
@@ -209,17 +207,16 @@
             <div class="home-bar" id="homeBar"></div>
         </div>
         <div class="unlocked-screen" id="homeScreen">
-            <div class="app-grid">
-                <div class="app">📞</div>
-                <div class="app">💬</div>
-                <div class="app">📷</div>
-                <div class="app">🎵</div>
-                <div class="app">🌍</div>
-                <div class="app">📩</div>
-                <div class="app">📅</div>
-                <div class="app">⚙️</div>
+            <div class="app-grid" id="appGrid">
+                <div class="app" draggable="true">📞</div>
+                <div class="app" draggable="true">💬</div>
+                <div class="app" draggable="true">📷</div>
+                <div class="app" draggable="true">🎵</div>
+                <div class="app" draggable="true">🌍</div>
+                <div class="app" draggable="true">📩</div>
+                <div class="app" draggable="true">📅</div>
+                <div class="app" draggable="true">⚙️</div>
             </div>
-            <!-- Dock Bar -->
             <div class="dock-bar">
                 <div class="app">📞</div>
                 <div class="app">💬</div>
@@ -227,10 +224,7 @@
                 <div class="app">🎵</div>
             </div>
         </div>
-        <!-- Botão de desbloqueio -->
         <div class="unlock-button" id="unlockButton"></div>
-
-        <!-- Câmera mais realista (sem emoji) -->
         <div class="camera-icon"></div>
     </div>
 
@@ -241,7 +235,7 @@
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
-            clockElement.textContent = ${hours}:${minutes};
+            clockElement.textContent = `${hours}:${minutes}`;
             const options = { weekday: 'long', day: 'numeric', month: 'long' };
             dateElement.textContent = now.toLocaleDateString('pt-BR', options);
         }
@@ -273,6 +267,31 @@
         homeScreen.addEventListener("mouseleave", function () {
             unlockButton.classList.remove("show");
         });
+
+        // Drag and drop only for apps on the home screen
+        const appGrid = document.getElementById("appGrid");
+
+        appGrid.addEventListener("dragstart", function(e) {
+            if (!e.target.classList.contains("app")) return;
+            e.target.style.opacity = "0.5";
+            e.dataTransfer.setData("text/plain", e.target.innerHTML);
+        });
+
+        appGrid.addEventListener("dragend", function(e) {
+            if (!e.target.classList.contains("app")) return;
+            e.target.style.opacity = "1";
+        });
+
+        appGrid.addEventListener("dragover", function(e) {
+            e.preventDefault();
+        });
+
+        appGrid.addEventListener("drop", function(e) {
+            e.preventDefault();
+            const draggedApp = e.target;
+            if (!draggedApp.classList.contains("app")) return;
+            draggedApp.innerHTML = e.dataTransfer.getData("text/plain");
+        });
     </script>
 </body>
-                    </html>
+</html>
