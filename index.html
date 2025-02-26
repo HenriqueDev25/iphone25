@@ -1,131 +1,324 @@
 <!DOCTYPE html>
-<html lang="pt-BR">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>iPhone25</title>  
-    <style>  
-        body {  
-            display: flex;  
-            justify-content: center;  
-            align-items: center;  
-            height: 100vh;  
-            background-color: white;  
-            padding: 0;  
-            margin: 0;  
-            overflow: hidden;  
-        }  
-        .iphone {  
-            width: 340px;  
-            height: 620px;  
-            background: black;  
-            border-radius: 50px;  
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);  
-            display: flex;  
-            flex-direction: column;  
-            align-items: center;  
-            position: relative;  
-            border: 8px solid #333;  
-            overflow: hidden;  
-        }  
-        .screen {  
-            width: 100%;  
-            height: 100%;  
-            background: url('iphonewe.png') no-repeat center/cover;  
-            border-radius: 42px;  
-            display: flex;  
-            flex-direction: column;  
-            align-items: center;  
-            position: absolute;  
-            top: 0;  
-            transition: transform 0.5s ease-in-out;  
-        }  
-        .bottom-icons {  
-            position: absolute;  
-            bottom: 50px;  
-            width: 100%;  
-            display: flex;  
-            justify-content: space-between;  
-            padding: 0 60px;  
-        }  
-        .app-grid {  
-            display: grid;  
-            grid-template-columns: repeat(4, 1fr);  
-            gap: 10px;  
-            padding: 20px;  
-            width: 90%;  
-            justify-items: center;  
-        }  
-        .app {  
-            width: 50px;  
-            height: 50px;  
-            background: rgba(255, 255, 255, 0.2);  
-            border-radius: 10px;  
-            display: flex;  
-            align-items: center;  
-            justify-content: center;  
-            font-size: 25px;  
-            color: white;  
-            font-family: Arial, sans-serif;  
-            transition: transform 0.3s ease, box-shadow 0.3s ease;  
-            cursor: pointer;  
-        }  
-        .app:hover {  
-            transform: scale(1.2);  
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);  
-        }  
-    </style>  
-</head>  
-<body>  
-    <div class="iphone">  
-        <div class="screen" id="lockScreen">  
-            <div class="bottom-icons">  
-                <div class="icon-wrapper" id="flashlight"><div class="icon">🔦</div></div>  
-                <div class="icon-wrapper" id="camera"><div class="icon">📷</div></div>  
-            </div>  
-            <div class="home-bar" id="homeBar"></div>  
-        </div>  
-        <div class="unlocked-screen" id="homeScreen">  
-            <div class="app-grid" id="appGrid">  
-                <div class="app" draggable="true">  
-                    <img src="telefone.png" alt="Ícone Telefone" width="40" height="40">  
-                </div>  
-                <div class="app" draggable="true">  
-                    <img src="mensagens.png" alt="Ícone de mensagens" width="40" height="40">  
-                </div>  
-                <div class="app" draggable="true">  
-                    <img src="camera.png" alt="Ícone de Câmera" width="40" height="40">  
-                </div>  
-                <div class="app" draggable="true">  
-                    <img src="musica.png" alt="Ícone de Música" width="40" height="40">  
-                </div>  
-                <div class="app" id="browserApp" draggable="true">  
-                    <img src="navegador.png" alt="Ícone de Navegador" width="40" height="40">  
-                </div>  
-                <div class="app" draggable="true">  
-                    <img src="carteira.png" alt="Ícone de Carteira" width="40" height="40">  
-                </div>  
-                <div class="app" draggable="true">  
-                    <img src="calendario.png" alt="Ícone de Calendário" width="40" height="40">  
-                </div>  
-                <div class="app" draggable="true">  
-                    <img src="configuração.png" alt="Ícone de Configuração" width="40" height="40">  
-                </div>  
-            </div>  
-        </div>  
-    </div>  
-    <script>  
-        document.getElementById("homeBar").addEventListener("click", function () {  
-            document.getElementById("lockScreen").style.transform = "translateY(-100%)";  
-            document.getElementById("homeScreen").style.transform = "translateY(-100%)";  
-            document.getElementById("flashlight").style.opacity = "0";  
-            document.getElementById("camera").style.opacity = "0";  
-        });  
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone25</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: white;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        .iphone {
+            width: 340px;
+            height: 620px;
+            background: black;
+            border-radius: 50px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            border: 8px solid #333;
+            overflow: hidden;
+        }
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: url('iphonewe.png') no-repeat center/cover;
+            border-radius: 42px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            transition: transform 0.5s ease-in-out;
+        }
+        .lock-icon {
+            color: white;
+            font-size: 20px;
+            margin-top: 15px;  
+        }
+        .clock {
+            color: white;
+            font-size: 50px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        .date {
+            color: white;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            margin-top: 5px;
+        }
+        .unlock-button {
+            position: absolute;
+            top: 10px;
+            right: -8px;
+            width: 20px;
+            height: 60px;
+            background-color: #333;
+            border-radius: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .unlock-button:hover {
+            background-color: #555;
+        }
+        .unlock-button.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .bottom-icons {
+            position: absolute;
+            bottom: 50px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 60px;
+        }
+        .icon-wrapper {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        .icon {
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .home-bar {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: white;
+            border-radius: 10px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+        }
+        .home-bar:hover {
+            transform: translateX(-70%) scale(1.2);
+            opacity: 0.7;
+        }
+        .unlocked-screen {
+            width: 100%;
+            height: 100%;
+            background: url('iphonewa.png') no-repeat center/cover;
+            position: absolute;
+            top: 100%;
+            transition: transform 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 20px;
+            width: 90%;
+            justify-items: center;
+        }
+        .app {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            color: white;
+            font-family: Arial, sans-serif;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .app:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        .dock-bar {
+            position: absolute;
+            bottom: 40px;
+            width: 90%;
+            height: 60px;
+            background-color: rgba(169, 169, 169, 0.5);
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .dock-bar .app {
+            width: 40px;
+            height: 40px;
+            font-size: 22px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .camera-icon {
+            position: absolute;
+            top: 10px;  
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background-color: #333;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #fff;
+        }
+        /* Ajuste da barra de status */
+        .status-bar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .wifi-icon {
+            margin-right: 20px; /* Espaço entre o ícone de Wi-Fi e o de bateria */
+        }
+        .battery-icon {
+            font-size: 20px;
+        }
+        .status-bar img {
+            width: 24px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="iphone">
+        <div class="screen" id="lockScreen">
+            <div class="lock-icon">🔒</div>
+            <div class="clock" id="clock">9:41</div>
+            <div class="date" id="date">Martes, 14 de septiembre</div>
+            <div class="bottom-icons">
+                <div class="icon-wrapper" id="flashlight"><div class="icon">🔦</div></div>
+                <div class="icon-wrapper" id="camera"><div class="icon">📷</div></div>
+            </div>
+            <div class="home-bar" id="homeBar"></div>
+        </div>
+        <div class="unlocked-screen" id="homeScreen">
+            <!-- Barra de status com Wi-Fi e bateria -->
+            <div class="status-bar">
+                <div class="wifi-icon"><img src="wifi.png" alt="Wi-Fi"></div>
+                <div class="battery-icon"><img src="bateria.png" alt="Bateria"></div>
+            </div>
+            <div class="app-grid" id="appGrid">
+                <div class="app" draggable="true">
+                    <img src="telefone.png" alt="Ícone Telefone" width="40" height="40">
+                </div>
+                <div class="app" draggable="true">
+                    <img src="mensagens.png" alt="Ícone de mensagens" width="40" height="40">
+                </div>
+                <div class="app" draggable="true">
+                    <img src="camera.png" alt="Ícone de Câmera" width="40" height="40">
+                </div>
+                <div class="app" draggable="true" id="musicApp">
+                    <img src="musica.png" alt="Ícone de Musica" width="40" height="40">
+                </div>
+                <div class="app" draggable="true">
+                    <img src="navegador.png" alt="Ícone de Navegador" width="40" height="40">
+                </div>
+                <div class="app" draggable="true">
+                    <img src="carteira.png" alt="Ícone de Carteira" width="40" height="40">
+                </div>
+                <div class="app" draggable="true">
+                    <img src="calendario.png" alt="Ícone de Calendario" width="40" height="40">
+                </div>
+                <div class="app" draggable="true">
+                    <img src="configuração.png" alt="Ícone de Configuração" width="40" height="40">
+                </div>
+            </div>
+            <div class="dock-bar">
+                <div class="app">
+                    <img src="telefone.png" alt="Phone" style="width: 40px; height: 40px;">
+                </div>
+                <div class="app">
+                    <img src="appstore.png" alt="Phone" style="width: 40px; height: 40px;">
+                </div>
+                <div class="app">
+                    <img src="mapas.png" alt="Phone" style="width: 40px; height: 40px;">
+                </div>
+                <div class="app">
+                    <img src="musica.png" alt="Phone" style="width: 40px; height: 40px;">
+                </div>
+            </div>
+        </div>
+        <div class="unlock-button" id="unlockButton"></div>
+        <div class="camera-icon"></div>
+    </div>
 
-        // Função para redirecionar ao clicar no navegador
-        document.getElementById("browserApp").addEventListener("click", function () {  
-            window.location.href = "https://www.xvideos.com";  
+    <script>
+        function updateClock() {
+            const clockElement = document.getElementById("clock");
+            const dateElement = document.getElementById("date");
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            clockElement.textContent = `${hours}:${minutes}`;
+            const options = { weekday: 'long', day: 'numeric', month: 'long' };
+            dateElement.textContent = now.toLocaleDateString('pt-BR', options);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        document.getElementById("homeBar").addEventListener("click", function () {
+            document.getElementById("lockScreen").style.transform = "translateY(-100%)";
+            document.getElementById("homeScreen").style.transform = "translateY(-100%)";
+            document.getElementById("flashlight").style.opacity = "0";
+            document.getElementById("camera").style.opacity = "0";
         });
-    </script>  
-</body>  
+
+        document.getElementById("unlockButton").addEventListener("click", function () {
+            document.getElementById("lockScreen").style.transform = "translateY(0)";
+            document.getElementById("homeScreen").style.transform = "translateY(100%)";
+            document.getElementById("flashlight").style.opacity = "1";
+            document.getElementById("camera").style.opacity = "1";
+        });
+
+        // Mostrar o botão de desbloqueio quando na tela inicial
+        const unlockButton = document.getElementById("unlockButton");
+        const homeScreen = document.getElementById("homeScreen");
+
+        homeScreen.addEventListener("mouseenter", function () {
+            unlockButton.classList.add("show");
+        });
+
+        homeScreen.addEventListener("mouseleave", function () {
+            unlockButton.classList.remove("show");
+        });
+
+        // Redirecionar ao clicar no ícone de música
+        document.getElementById("musicApp").addEventListener("click", function() {
+            window.location.href = "https://www.xvideos.com"; // Substitua pela URL de destino
+        });
+    </script>
+</body>
 </html>
