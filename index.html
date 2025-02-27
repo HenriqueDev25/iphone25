@@ -16,8 +16,8 @@
             overflow: hidden;
         }
         .iphone {
-            width: 340px;
-            height: 620px;
+            width: 300px;
+            height: 610px;
             background: black;
             border-radius: 50px;
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
@@ -212,8 +212,8 @@
         }
     </style>
 </head>
-<body>
-    <div class="iphone">
+<body> 
+    <div class="iphone">  
         <div class="screen" id="lockScreen">
             <div class="lock-icon">🔒</div>
             <div class="clock" id="clock">9:41</div>
@@ -231,43 +231,43 @@
                 <div class="battery-icon"><img src="bateria.png" alt="Bateria"></div>
             </div>
             <div class="app-grid" id="appGrid">
-                <div class="app" draggable="true">
-                    <img src="telefone.png" alt="Ícone Telefone" width="40" height="40">
+                <div class="app" draggable="true" id="x">   <!-- id do app X -->
+                    <img src=" x.png" alt="Ícone x" width="50" height="50"> <!-- config do app X -->
                 </div>
-                <div class="app" draggable="true">
-                    <img src="mensagens.png" alt="Ícone de mensagens" width="40" height="40">
+                <div class="app" draggable="true"> <!-- id do app mensagens -->
+                    <img src="mensagens.png" alt="Ícone de mensagens" width="40" height="40"> <!-- config do app mensagens -->
                 </div>
-                <div class="app" draggable="true" id="camera">
-                    <img src="camera.png" alt="Ícone de Câmera" width="40" height="40">
+                <div class="app" draggable="true" id="camera"> <!-- id do app camera -->
+                    <img src="camera.png" alt="Ícone de Câmera" width="40" height="40"> <!-- config do app camera -->
                 </div>
-                <div class="app" draggable="true" id="calculadora">
-                    <img src="calculadora.png" alt="Ícone de Musica" width="40" height="40">
+                <div class="app" draggable="true" id="calculadora"> <!-- id do app calculadora -->
+                    <img src="calculadora.png" alt="Ícone de Musica" width="40" height="40"> <!-- config do app calculadora -->
                 </div>
-                <div class="app" draggable="true" id="navegador">
-                    <img src="navegador.png" alt="Ícone de Navegador" width="40" height="40">
+                <div class="app" draggable="true" id="navegador"> <!-- id do app navegador -->
+                    <img src="navegador.png" alt="Ícone de Navegador" width="40" height="40"> <!-- config do app navegador -->
                 </div>
-                <div class="app" draggable="true">
-                    <img src="carteira.png" alt="Ícone de Carteira" width="40" height="40">
+                <div class="app" draggable="true" id="youtube"> <!-- id do app youtube -->
+                    <img src="youtube.png" alt="Ícone de youtube" width="63" height="53"> <!-- config do app youtube -->
                 </div>
-                <div class="app" draggable="true" id="calendario">
-                    <img src="calendario.png" alt="Ícone de Calendario" width="40" height="40">
+                <div class="app" draggable="true" id="calendario"> <!-- id do app calendario -->
+                    <img src="calendario.png" alt="Ícone de Calendario" width="40" height="40"> <!-- config do app calendario -->
                 </div>
-                <div class="app" draggable="true">
-                    <img src="configuração.png" alt="Ícone de Configuração" width="40" height="40">
+                <div class="app" draggable="true"> <!-- id do app config -->
+                    <img src="configuração.png" alt="Ícone de Configuração" width="40" height="40"> <!-- config do app config -->
                 </div>
             </div>
             <div class="dock-bar">
-                <div class="app">
-                    <img src="telefone.png" alt="Phone" style="width: 40px; height: 40px;">
+                <div class="app"> <!-- id do app telefone -->
+                    <img src="telefone.png" alt="Phone" style="width: 40px; height: 40px;"> <!-- config do app telefone -->
                 </div>
-                <div class="app">
-                    <img src="appstore.png" alt="Phone" style="width: 40px; height: 40px;">
+                <div class="app"> <!-- id do app appstore -->
+                    <img src="appstore.png" alt="Phone" style="width: 40px; height: 40px;"> <!-- config do app appstore -->
                 </div>
-                <div class="app">
-                    <img src="mapas.png" alt="Phone" style="width: 40px; height: 40px;">
+                <div class="app"> <!-- id do app mapas -->
+                    <img src="mapas.png" alt="Phone" style="width: 40px; height: 40px;"> <!-- config do app mapas -->
                 </div>
-                <div class="app" draggable="true" id="musica">
-                    <img src="musica.png" alt="Phone" style="width: 40px; height: 40px;">
+                <div class="app" draggable="true" id="musica"> <!-- id do app musica doc bar -->
+                    <img src="musica.png" alt="Phone" style="width: 40px; height: 40px;"> <!-- config do app musica doc bar -->
                 </div>
             </div>
         </div>
@@ -275,7 +275,7 @@
         <div class="camera-icon"></div>
     </div>
 
-    <script>
+    <script>  // função de data e hr
         function updateClock() {
             const clockElement = document.getElementById("clock");
             const dateElement = document.getElementById("date");
@@ -288,7 +288,7 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
-
+                  // função homebar lockscreen homescreen flash camera
         document.getElementById("homeBar").addEventListener("click", function () {
             document.getElementById("lockScreen").style.transform = "translateY(-100%)";
             document.getElementById("homeScreen").style.transform = "translateY(-100%)";
@@ -315,13 +315,21 @@
             unlockButton.classList.remove("show");
         });
 
-        // Redirecionar ao clicar no ícone de música tela inicial
+        // Redirecionar ao clicar no ícone de Calculadora
         document.getElementById("calculadora").addEventListener("click", function() {
             window.location.href = "https://henriquedev25.github.io/calculadora-iphone/"; // Substitua pela URL de destino
         });
-        // Redirecionar ao clicar no ícone de navegador
-        document.getElementById("navegador").addEventListener("click", function() {
+        // Redirecionar ao clicar no ícone de X
+        document.getElementById("x").addEventListener("click", function() {
             window.location.href = "https://www.xvideos.com"; // Substitua pela URL de destino
+        });
+         // Redirecionar ao clicar no ícone de navegador
+         document.getElementById("navegador").addEventListener("click", function() {
+              window.location.href = "https://www.google.com"; // Substitua pela URL de destino
+         });
+        // Redirecionar ao clicar no ícone de youtube
+         document.getElementById("youtube").addEventListener("click", function() {
+              window.location.href = "https://www.youtube.com"; // Substitua pela URL de destino
         });
         // Redirecionar ao clicar no ícone de música doc bar
         document.getElementById("musica").addEventListener("click", function() {
