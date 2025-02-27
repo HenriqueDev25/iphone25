@@ -132,15 +132,21 @@
         }
         .app-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            padding: 20px;
+            grid-template-columns: repeat(3, auto); /* Ajuste para duas colunas com largura automática */
+            grid-template-rows: repeat(4, 1fr); /* Quatro linhas */
+            gap: 15px 5px; /* Diminuindo o espaço entre as linhas para 15px e entre as colunas para 5px */
+            padding: 15px; /* Ajustando o preenchimento */
             width: 90%;
             justify-items: center;
+            align-items: center;
+            margin-top: 60px; /* Movendo os aplicativos mais para cima */
         }
+        
+        
+        
         .app {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             display: flex;
@@ -152,6 +158,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
+        
         .app:hover {
             transform: scale(1.2);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
@@ -270,6 +277,7 @@
                     <img src="musica.png" alt="Phone" style="width: 40px; height: 40px;"> <!-- config do app musica doc bar -->
                 </div>
             </div>
+            <div class="home-bar" id="homeBarOnHomeScreen"></div>
         </div>
         <div class="unlock-button" id="unlockButton"></div>
         <div class="camera-icon"></div>
@@ -288,12 +296,19 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
-                  // função homebar lockscreen homescreen flash camera
+        // Função homebar lockscreen homescreen flash camera
         document.getElementById("homeBar").addEventListener("click", function () {
             document.getElementById("lockScreen").style.transform = "translateY(-100%)";
             document.getElementById("homeScreen").style.transform = "translateY(-100%)";
             document.getElementById("flashlight").style.opacity = "0";
             document.getElementById("camera").style.opacity = "0";
+        });
+        
+        document.getElementById("homeBarOnHomeScreen").addEventListener("click", function () {
+            document.getElementById("lockScreen").style.transform = "translateY(0)";
+            document.getElementById("homeScreen").style.transform = "translateY(100%)";
+            document.getElementById("flashlight").style.opacity = "1";
+            document.getElementById("camera").style.opacity = "1";
         });
 
         document.getElementById("unlockButton").addEventListener("click", function () {
@@ -314,8 +329,7 @@
         homeScreen.addEventListener("mouseleave", function () {
             unlockButton.classList.remove("show");
         });
-
-        // Redirecionar ao clicar no ícone de Calculadora
+       // Redirecionar ao clicar no ícone de Calculadora
         document.getElementById("calculadora").addEventListener("click", function() {
             window.location.href = "https://henriquedev25.github.io/calculadora-iphone/"; // Substitua pela URL de destino
         });
