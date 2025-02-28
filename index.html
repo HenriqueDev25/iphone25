@@ -270,7 +270,7 @@
                 <div class="app"> <!-- id do app appstore -->
                     <img src="appstore.png" alt="Phone" style="width: 40px; height: 40px;"> <!-- config do app appstore -->
                 </div>
-                <div class="app"> <!-- id do app mapas -->
+                <div class="app" draggable="true" id="mapas"> <!-- id do app mapas -->
                     <img src="mapas.png" alt="Phone" style="width: 40px; height: 40px;"> <!-- config do app mapas -->
                 </div>
                 <div class="app" draggable="true" id="musica"> <!-- id do app musica doc bar -->
@@ -352,6 +352,10 @@
          // Redirecionar ao clicar no ícone de calendario
          document.getElementById("calendario").addEventListener("click", function() {
               window.location.href = "https://www.calendarr.com/brasil/"; // Substitua pela URL de destino
+        });
+        // Redirecionar ao clicar no ícone de calendario
+         document.getElementById("mapas").addEventListener("click", function() {
+              window.location.href = "https://www.maps.google.com"; // Substitua pela URL de destino
         });
     </script>
 </body>
